@@ -4,13 +4,13 @@ import { ErrorResponse, Product, ProductResponse } from '../../../../types';
 
 type GetProduct = (gtin: string) => Product | undefined;
 
-const getProduct: GetProduct = (gtin) => {
+export const getProduct: GetProduct = (gtin) => {
   return products.find((product) => product.gtin === gtin);
 };
 
 const handler = (
   request: NextApiRequest,
-  response: NextApiResponse<ProductResponse | ErrorResponse>,
+  response: NextApiResponse<ProductResponse | ErrorResponse>
 ): void => {
   const { method, query } = request;
   const { status } = response;
