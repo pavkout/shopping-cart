@@ -4,7 +4,7 @@ type Props = {
 
 const Content = ({ children }: Props) => {
   return (
-    <div className='min-h-screen flex flex-column justify-between'>
+    <div className='min-h-screen flex flex-column justify-between pt-6 pb-6'>
       {children}
     </div>
   );
