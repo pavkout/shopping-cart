@@ -1,9 +1,10 @@
-import Layout from '../../components/Layout';
+import EmptyCart from '../../components/EmptyCart';
 
 const CartPage = () => (
-  <Layout>
+  <>
     <h1>Your Cart</h1>
-  </Layout>
+    <EmptyCart />
+  </>
 );
 
 export default CartPage;
