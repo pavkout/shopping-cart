@@ -4,7 +4,7 @@ import { ErrorResponse, Product, ProductsResponse } from '../../../types';
 
 type GetPage = (page: number) => Product[];
 
-const getPage: GetPage = (page) => {
+export const getPage: GetPage = (page) => {
   if (page < 1) return [];
   const SIZE = 20;
   const startIndex = page * SIZE - SIZE;
@@ -14,7 +14,7 @@ const getPage: GetPage = (page) => {
 
 const handler = (
   request: NextApiRequest,
-  response: NextApiResponse<ProductsResponse | ErrorResponse>,
+  response: NextApiResponse<ProductsResponse | ErrorResponse>
 ): void => {
   const { method, query } = request;
   const { status } = response;
