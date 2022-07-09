@@ -9,20 +9,12 @@ const Nav = () => {
         </h1>
       </Link>
 
-      <ul className='flex justify-end items-end pr-4 md:pr-24 w-full space-x-6 md:space-x-12 font-display font-thin md:font-light'>
-        <Link href='/'>
-          <li className='text-sm md:text-lg transition duration-300 transform hover:-translate-y-1 hover:text-purple-500 border-purple-500 hover:border-b-2'>
-            Products
-          </li>
-        </Link>
-        <Link href='/cart'>
-          <li
-            className='flex transition duration-300 transform hover:-translate-y-1 hover:text-purple-500 
-                  hover:font-normal border-purple-500 hover:border-b-2'
-          >
+      <div className='flex justify-end items-end pr-4 md:pr-24 w-full space-x-6 md:space-x-12 font-display font-thin md:font-light'>
+        <Link href='/?cart="true"' as='/cart'>
+          <li className='flex transition duration-300 transform hover:-translate-y-1 hover:font-normal'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              className='h-6 w-6'
+              className='h-8 w-8'
               fill='none'
               viewBox='0 0 24 24'
               stroke='currentColor'
@@ -36,7 +28,7 @@ const Nav = () => {
             </svg>
           </li>
         </Link>
-      </ul>
+      </div>
     </nav>
   );
 };
