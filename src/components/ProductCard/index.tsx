@@ -1,4 +1,7 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { ShoppingCartIcon } from '@heroicons/react/outline';
+
 import { Product } from '../../types';
 
 type Props = {
@@ -7,31 +10,31 @@ type Props = {
 
 const ProductCard = ({ product }: Props) => {
   return (
-    <div className='group relative rounded-md border-solid border-2 border-neutral-600 p-4 shadow-sm'>
-      <figure className='px-10 pt-10'>
+    <div className='group relative overflow-hidden rounded-md p-4 shadow-lg hover:cursor-pointer'>
+      <figure className='px-10'>
         <Image
           src={product.imageUrl}
-          alt='Card Image'
+          alt='Product Image'
           className='object-contain w-full h-64'
           height={300}
           width={220}
         />
       </figure>
       <div className='mt-4 flex justify-between'>
-        <div>
+        <Link href={`/?gtin=${product.gtin}`} as={`/product/${product.gtin}`}>
           <h3 className='text-sm text-gray-700'>
             <span aria-hidden='true' className='absolute inset-0' />
             {product.name}
           </h3>
-          <p className='mt-1 text-sm text-gray-500'>{product.brandName}</p>
-          <p className='mt-1 text-sm text-gray-500'>{product.categoryName}</p>
-        </div>
+        </Link>
         <p className='text-sm font-medium text-gray-900'>
-          {product.recommendedRetailPriceCurrency}
           {product.recommendedRetailPrice}
+          {product.recommendedRetailPriceCurrency}
         </p>
       </div>
-      <button className=''>Add to Cart</button>
+      <button className='absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-purple-500 pl-4 text-white shadow disabled:opacity-60 hover:opacity-80 text-2xl'>
+        <ShoppingCartIcon className='h-6 w-6' aria-hidden='true' />
+      </button>
     </div>
   );
 };
