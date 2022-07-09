@@ -10,8 +10,8 @@ type Props = {
 
 const ProductCard = ({ product }: Props) => {
   return (
-    <div className='group relative overflow-hidden rounded-md p-4 shadow-lg hover:cursor-pointer'>
-      <figure className='px-10'>
+    <div className='group relative overflow-hidden rounded-md px-4 pt-4 pb-20 shadow-lg hover:cursor-pointer'>
+      <figure className='flex justify-center items-center px-10 '>
         <Image
           src={product.imageUrl}
           alt='Product Image'
@@ -20,14 +20,14 @@ const ProductCard = ({ product }: Props) => {
           width={220}
         />
       </figure>
-      <div className='mt-4 flex justify-between'>
+      <div className='flex justify-between'>
         <Link href={`/?gtin=${product.gtin}`} as={`/product/${product.gtin}`}>
-          <h3 className='text-sm text-gray-700'>
+          <h2 className='text-md text-gray-700 pr-4'>
             <span aria-hidden='true' className='absolute inset-0' />
             {product.name}
-          </h3>
+          </h2>
         </Link>
-        <p className='text-sm font-medium text-gray-900'>
+        <p className='text-md font-medium text-gray-900'>
           {product.recommendedRetailPrice}
           {product.recommendedRetailPriceCurrency}
         </p>
