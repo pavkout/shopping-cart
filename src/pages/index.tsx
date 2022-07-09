@@ -1,17 +1,37 @@
-import { getPage } from './api/products';
+import { useRouter } from 'next/router';
+
 import ProductCard from '../components/ProductCard';
+import ProductModal from '../components/ProductModal';
+import ShoppingCart from '../components/ShoppingCart';
+
+import { getPage } from './api/products';
 import { Product } from '../types';
 
-const HomePage = ({ products }: any) => {
+type Props = {
+  products: Product[];
+};
+
+const HomePage = ({ products }: Props) => {
+  const router = useRouter();
+
   return (
-    <div className='flex flex-col'>
-      <h1>Products</h1>
-      <div className='grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8'>
+    <>
+      <div className='font-display mt-12 mb-2 text-3xl md:text-4xl font-medium text-center text-gray-700'>
+        <h1> Qogita's Collection </h1>
+      </div>
+      <div className='grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 p-6 px-20'>
         {products.map((p: Product) => (
           <ProductCard key={p.gtin} product={p} />
         ))}
       </div>
-    </div>
+      <ProductModal
+        open={!!router.query.gtin}
+        product={
+          products.filter((p: Product) => p.gtin === router.query.gtin)[0]
+        }
+      />
+      <ShoppingCart open={!!router.query.cart} />
+    </>
   );
 };
 
