@@ -6,7 +6,7 @@ import ItemQuantity from '../ItemQuantity';
 import { Product } from '../../types';
 import { ShoppingContext } from '../../state/store';
 import { removeFromCart } from '../../state/actions';
-import { formatPrice } from '../../utils';
+import { calculateAmountWithQuantity, formatPrice } from '../../utils';
 
 type Props = {
   product: Product;
@@ -29,7 +29,7 @@ const ShoppingCartItem = ({ product }: Props) => {
   const { dispatch } = useContext(ShoppingContext);
 
   // Culculate the amount of money.
-  const amount = Math.round(recommendedRetailPrice * quantity * 100) / 100;
+  const amount = calculateAmountWithQuantity(recommendedRetailPrice, quantity);
 
   // This function fires when user click remove button.
   const handleRemoveClick = (gtin: string, name: string) => {

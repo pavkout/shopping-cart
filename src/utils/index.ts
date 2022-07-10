@@ -18,3 +18,14 @@ export const generateRandom = (min: number, max: number, step: number) => {
   const randomNum = min + Math.random() * (max - min);
   return Math.round(randomNum / step) * step;
 };
+
+/**
+ * Calculate the amount of money by adding the quantity to the product.
+ * @param amount The amount per product.
+ * @param quantity The quantity.
+ * @returns The result of amount.
+ */
+export const calculateAmountWithQuantity = (
+  amount: number,
+  quantity: number
+): number => Math.round(amount * quantity * 100) / 100;
