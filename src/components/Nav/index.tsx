@@ -1,6 +1,14 @@
 import Link from 'next/link';
+import { useContext } from 'react';
+
+import { ShoppingContext } from '../../state/store';
 
 const Nav = () => {
+  // Use context
+  const { state } = useContext(ShoppingContext);
+
+  const { totalItems } = state;
+
   return (
     <nav className='flex h-18 py-4 w-full m-auto text-white'>
       <Link href='/'>
@@ -26,6 +34,11 @@ const Nav = () => {
                 d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
               />
             </svg>
+            {totalItems > 0 && (
+              <span className='transform duration-300 absolute -right-2 -top-2 h-5 w-5 inline-flex items-center justify-center p-1 text-sm font-semibold text-red-800 bg-gray-100 rounded-full dark:bg-red-700 dark:text-gray-300'>
+                {totalItems}
+              </span>
+            )}
           </li>
         </Link>
       </div>
