@@ -3,11 +3,14 @@ import { Fragment, useContext, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
+import { useToasts } from 'react-toast-notifications';
+
+import ItemQuantity from '../ItemQuantity';
 
 import { Product } from '../../types';
 import { ShoppingContext } from '../../state/store';
 import { addToCart } from '../../state/actions';
-import ItemQuantity from '../ItemQuantity';
+import { formatPrice } from '../../utils';
 
 type Props = {
   open: boolean;
@@ -20,6 +23,8 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
   // Don't display nothing if the open is false or there isn't any product.
   if (!open || !product) return null;
 
+  // Use toast system.
+  const { addToast } = useToasts();
   // Use router object
   const router = useRouter();
   // Create flag to store the quantity of the item.
@@ -31,6 +36,9 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
   const handleAddClick = () => {
     dispatch(addToCart({ ...product, quantity }));
     router.push('/');
+    addToast(`${product.name} has successfully added to the cart.`, {
+      appearance: 'success',
+    });
   };
 
   return (
@@ -38,9 +46,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
       <Dialog
         as='div'
         className='relative z-10'
-        onClose={() => {
-          router.push('/');
-        }}
+        onClose={() => router.push('/')}
       >
         <Transition.Child
           as={Fragment}
@@ -98,8 +104,10 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
                         </h3>
 
                         <p className='text-2xl text-gray-900'>
-                          {product.recommendedRetailPrice}
-                          {product.recommendedRetailPriceCurrency}
+                          {formatPrice(
+                            product.recommendedRetailPriceCurrency,
+                            product.recommendedRetailPrice
+                          )}
                         </p>
 
                         <div className='mt-6'>
