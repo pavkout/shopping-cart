@@ -1,6 +1,14 @@
 import { ActionType, IState, Product } from '../types';
 import { initialState } from './initialState';
 import {
+  addProductToCart,
+  increaseProductQuantity,
+  increaseQuantity,
+  removeProductFromCart,
+  subtractProductQuantity,
+  subtractQuantity,
+} from './helpers';
+import {
   ADD_TO_CART,
   INCREASE_CART_QUANTITY,
   RESET_CART,
@@ -13,45 +21,34 @@ const Reducer = (state: IState, action: ActionType): any => {
     case ADD_TO_CART:
       return {
         ...state,
-        cart: [...state.cart, action.payload],
-        totalItems: state.totalItems + 1,
+        cart: addProductToCart(state.cart, action.payload as Product),
+        totalItems: increaseQuantity(
+          state.totalItems,
+          (action.payload as Product).quantity
+        ),
       };
     case REMOVE_FROM_CART: {
-      let newCart = state.cart.filter(
-        (p: Product) => p.gtin !== action.payload
-      );
+      // Find the product in order to get the quantity.
+      let product = state.cart.find((p) => p.gtin === action.payload);
 
       return {
         ...state,
-        cart: newCart,
+        cart: removeProductFromCart(state.cart, action.payload as string),
+        totalItems: subtractQuantity(state.totalItems, product?.quantity),
       };
     }
     case INCREASE_CART_QUANTITY: {
-      let newState = state.cart.map((p: Product) => {
-        if (p.gtin === action.payload) {
-          p.quantity += 1;
-        }
-        return p;
-      });
-
       return {
         ...state,
-        cart: newState,
-        totalItems: state.totalItems + 1,
+        cart: increaseProductQuantity(state.cart, action.payload as string),
+        totalItems: increaseQuantity(state.totalItems),
       };
     }
     case SUBTRACT_CART_QUANTITY: {
-      let newCart = state.cart.map((p: Product) => {
-        if (p.gtin === action.payload) {
-          p.quantity -= 1;
-        }
-        return p;
-      });
-
       return {
         ...state,
-        cart: newCart.filter((p: Product) => p.quantity !== 0),
-        totalItems: state.totalItems - 1,
+        cart: subtractProductQuantity(state.cart, action.payload as string),
+        totalItems: subtractQuantity(state.totalItems),
       };
     }
     case RESET_CART:
