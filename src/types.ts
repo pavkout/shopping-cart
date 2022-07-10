@@ -1,3 +1,5 @@
+import { Dispatch } from 'react';
+
 export type Product = {
   name: string;
   gtin: string;
@@ -6,6 +8,7 @@ export type Product = {
   imageUrl: string;
   brandName: string;
   categoryName: string;
+  quantity: number;
 };
 
 /**
@@ -26,3 +29,18 @@ export type ProductsResponse = {
  * The response type of /api/products/[gtin].
  */
 export type ProductResponse = Product;
+export interface IState {
+  cart: Product[];
+  totalItems: number;
+  totalPrice: number;
+}
+
+export type ActionType = {
+  type: string;
+  payload?: any;
+};
+
+export type ContextType = {
+  state: IState;
+  dispatch: Dispatch<ActionType>;
+};
