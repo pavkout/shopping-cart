@@ -1,29 +1,37 @@
 import { useRouter } from 'next/router';
-import { Fragment } from 'react';
+import { Fragment, useContext, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
 
 import { Product } from '../../types';
+import { ShoppingContext } from '../../state/store';
+import { addToCart } from '../../state/actions';
+import ItemQuantity from '../ItemQuantity';
 
 type Props = {
   open: boolean;
   product: Product;
+  reviewsNum: number;
+  ratingStars: number;
 };
 
-/**
- * Generate random numbers for raviews.
- */
-const generateRandom = (min: number, max: number, step: number) => {
-  const randomNum = min + Math.random() * (max - min);
-  return Math.round(randomNum / step) * step;
-};
-
-const ProductModal = ({ open, product }: Props) => {
-  const router = useRouter();
-
+const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
   // Don't display nothing if the open is false or there isn't any product.
   if (!open || !product) return null;
+
+  // Use router object
+  const router = useRouter();
+  // Create flag to store the quantity of the item.
+  const [quantity, setQuantity] = useState(product.quantity | 1);
+  // Use context
+  const { dispatch } = useContext(ShoppingContext);
+
+  // This function fires when user click add to cart button.
+  const handleAddClick = () => {
+    dispatch(addToCart({ ...product, quantity }));
+    router.push('/');
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -62,9 +70,7 @@ const ProductModal = ({ open, product }: Props) => {
                   <button
                     type='button'
                     className='absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8'
-                    onClick={() => {
-                      router.push('/');
-                    }}
+                    onClick={() => router.push('/')}
                   >
                     <span className='sr-only'>Close</span>
                     <XIcon className='h-6 w-6' aria-hidden='true' />
@@ -104,7 +110,7 @@ const ProductModal = ({ open, product }: Props) => {
                                 <StarIcon
                                   key={rating}
                                   className={`${
-                                    generateRandom(1, 5, 1) > rating
+                                    ratingStars > rating
                                       ? 'text-gray-900'
                                       : 'text-gray-200'
                                   } h-5 w-5 flex-shrink-0`}
@@ -112,12 +118,14 @@ const ProductModal = ({ open, product }: Props) => {
                                 />
                               ))}
                             </div>
-                            <p className='sr-only'>{4} out of 5 stars</p>
+                            <p className='sr-only'>
+                              {ratingStars} out of 5 stars
+                            </p>
                             <a
                               href='#'
                               className='ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500'
                             >
-                              {`${generateRandom(1000, 2000, 8)} reviews`}
+                              {`${reviewsNum} reviews`}
                             </a>
                           </div>
                         </div>
@@ -136,18 +144,20 @@ const ProductModal = ({ open, product }: Props) => {
                         <p className='mt-1 text-sm text-gray-500'>
                           Category: {product.categoryName}
                         </p>
-                        <div className='flex justify-center mt-6 gap-4'>
-                          <input
-                            type='number'
-                            defaultValue='1'
-                            min='1'
-                            max='99'
-                            step='1'
-                            required
-                            className='w-1/4 text-center leading-normal flex-1 border h-12 border-purple-500 rounded px-3 relative focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500'
+                        <div className='flex justify-center items-center mt-6 gap-4'>
+                          <ItemQuantity
+                            gtin={product.gtin}
+                            quantity={quantity}
+                            onIncrease={() => setQuantity(quantity + 1)}
+                            onSubtract={() =>
+                              setQuantity(
+                                quantity === 1 ? quantity : quantity - 1
+                              )
+                            }
                           />
                           <button
                             type='submit'
+                            onClick={handleAddClick}
                             className='w-3/4 bg-purple-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500'
                           >
                             Add to Cart
