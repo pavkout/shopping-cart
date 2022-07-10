@@ -27,5 +27,5 @@ export const generateRandom = (min: number, max: number, step: number) => {
  */
 export const calculateAmountWithQuantity = (
   amount: number,
-  quantity: number
+  quantity: number = 1
 ): number => Math.round(amount * quantity * 100) / 100;
