@@ -1,5 +1,5 @@
 module.exports = {
   images: {
-    domains: ['images.qogita.com'],
+    domains: ['images.qogita.com', 'i.imgur.com'],
   },
 };
