@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination';
 
 import { getPage } from './api/products';
 import { Product } from '../types';
-import { generateRandom } from '../utils';
+import { generateRandom, scrollTop } from '../utils';
 import { useState } from 'react';
 
 type Props = {
@@ -24,6 +24,7 @@ const HomePage = ({ products }: Props) => {
   const handleFetchPage = async (page: number) => {
     const products = await getPage(page);
     setProductsState(products);
+    scrollTop();
   };
 
   return (
