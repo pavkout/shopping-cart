@@ -28,7 +28,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
   // Use router object
   const router = useRouter();
   // Create flag to store the quantity of the item.
-  const [quantity, setQuantity] = useState(product.quantity | 1);
+  const [quantity, setQuantity] = useState(product.quantity || 1);
   // Use context
   const { dispatch } = useContext(ShoppingContext);
 

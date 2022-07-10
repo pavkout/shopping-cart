@@ -39,7 +39,7 @@ export const removeProductFromCart = (
  * @param num2 The second number to add.
  * @returns The new result.
  */
-export const increaseQuantity = (num1: number, num2: number = 1): number =>
+export const increaseQuantity = (num1: number = 0, num2: number = 1): number =>
   num1 + num2;
 
 /**
@@ -67,7 +67,10 @@ export const increaseProductQuantity = (
  * @param num2 The second number to subtract.
  * @returns The new result.
  */
-export const subtractQuantity = (num1: number, num2: number = 1): number => {
+export const subtractQuantity = (
+  num1: number = 0,
+  num2: number = 1
+): number => {
   // Check first of all if the subtract value is negative then return zero.
   if (num1 - num2 < 0) return 0;
 

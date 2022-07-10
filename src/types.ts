@@ -8,7 +8,7 @@ export type Product = {
   imageUrl: string;
   brandName: string;
   categoryName: string;
-  quantity: number;
+  quantity?: number;
 };
 
 /**
