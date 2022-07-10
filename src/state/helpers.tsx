@@ -1,4 +1,5 @@
 import { Product } from '../types';
+import { calculateAmountWithQuantity } from '../utils';
 
 /**
  * This function adds a new product to the existing product list.
@@ -25,7 +26,7 @@ export const addProductToCart = (
  * This function remove the given product from the existing product list.
  * @param cart The exist product list.
  * @param gtin The remove product id.
- * @returns The new culculated product list.
+ * @returns The new calculated product list.
  */
 export const removeProductFromCart = (
   cart: Product[],
@@ -46,7 +47,7 @@ export const increaseQuantity = (num1: number, num2: number = 1): number =>
  * @param cart The exist product list.
  * @param gtin The id of the product to change the quantity to.
  * @param num The quantity to add.
- * @returns The new culculated product list.
+ * @returns The new calculated product list.
  */
 export const increaseProductQuantity = (
   cart: Product[],
@@ -78,7 +79,7 @@ export const subtractQuantity = (num1: number, num2: number = 1): number => {
  * @param cart The exist product list.
  * @param gtin The id of the product to change the quantity to.
  * @param num The quantity to add.
- * @returns The new culculated product list.
+ * @returns The new calculated product list.
  */
 export const subtractProductQuantity = (
   cart: Product[],
@@ -93,3 +94,37 @@ export const subtractProductQuantity = (
       return p;
     })
     .filter((p: Product) => p.quantity !== 0);
+
+/**
+ * This function increase the total price by given amount and the given quantity.
+ * @param totalPrice The total price.
+ * @param amount The amount to increase the price by.
+ * @param quantity The quantity to increase.
+ * @returns The new calculated price.
+ */
+export const increaseTotalPrice = (
+  totalPrice: number,
+  amount: number = 0,
+  quantity: number = 1
+): number => {
+  return totalPrice + calculateAmountWithQuantity(amount, quantity);
+};
+
+/**
+ * This function subtract the total price by given amount and the given quantity.
+ * @param totalPrice The total price.
+ * @param amount The amount to subtract the price by.
+ * @param quantity The quantity to subtract.
+ * @returns The new calculated price.
+ */
+export const subtractTotalPrice = (
+  totalPrice: number,
+  amount: number = 0,
+  quantity: number = 1
+): number => {
+  // Make the calculation of the price
+  const calc = totalPrice - calculateAmountWithQuantity(amount, quantity);
+
+  // If the result is negative, the return zero otherwise the calculated result.
+  return calc < 0 ? 0 : calc;
+};
