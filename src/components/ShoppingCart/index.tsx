@@ -2,12 +2,14 @@ import { useRouter } from 'next/router';
 import { Fragment, useContext } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
+import { useToasts } from 'react-toast-notifications';
 
 import ShoppingCartItem from './ShoppingCartItem';
 
 import { Product } from '../../types';
 import { ShoppingContext } from '../../state/store';
 import { formatPrice } from '../../utils';
+import { resetCart } from '../../state/actions';
 
 type Props = {
   open: boolean;
@@ -17,9 +19,18 @@ const ShoppingCart = ({ open }: Props) => {
   // Use router object
   const router = useRouter();
   // Use context
-  const { state } = useContext(ShoppingContext);
+  const { state, dispatch } = useContext(ShoppingContext);
+  // Use toast system.
+  const { addToast } = useToasts();
 
-  const { cart, totalPrice } = state;
+  const { cart, totalPrice, totalItems } = state;
+
+  const handleEraseCart = () => {
+    dispatch(resetCart());
+    addToast('The cart has successfully erased.', {
+      appearance: 'success',
+    });
+  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -99,15 +110,27 @@ const ShoppingCart = ({ open }: Props) => {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className='mt-6'>
-                        <a
-                          href='#'
-                          className='flex items-center justify-center rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700'
+                        <button
+                          onClick={() => router.push('/')}
+                          className='flex items-center justify-center w-full rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700'
                         >
                           Checkout
-                        </a>
+                        </button>
                       </div>
                       <div className='mt-6 flex justify-center text-center text-sm text-gray-500'>
                         <p>
+                          {totalItems > 0 && (
+                            <>
+                              or{' '}
+                              <button
+                                type='button'
+                                className='font-medium text-gray-400 hover:text-gray-500'
+                                onClick={handleEraseCart}
+                              >
+                                Erase Cart
+                              </button>{' '}
+                            </>
+                          )}
                           or{' '}
                           <button
                             type='button'
