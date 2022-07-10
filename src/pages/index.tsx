@@ -6,17 +6,10 @@ import ShoppingCart from '../components/ShoppingCart';
 
 import { getPage } from './api/products';
 import { Product } from '../types';
+import { generateRandom } from '../utils';
 
 type Props = {
   products: Product[];
-};
-
-/**
- * Generate random numbers for raviews.
- */
-const generateRandom = (min: number, max: number, step: number) => {
-  const randomNum = min + Math.random() * (max - min);
-  return Math.round(randomNum / step) * step;
 };
 
 const HomePage = ({ products }: Props) => {
