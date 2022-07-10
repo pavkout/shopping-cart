@@ -29,3 +29,10 @@ export const calculateAmountWithQuantity = (
   amount: number,
   quantity: number = 1
 ): number => Math.round(amount * quantity * 100) / 100;
+
+/**
+ * Scroll to the top of the window.
+ */
+export const scrollTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
