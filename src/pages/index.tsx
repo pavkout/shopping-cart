@@ -42,7 +42,7 @@ const HomePage = ({ products }: Props) => {
         ratingStars={generateRandom(1, 5, 1)}
         reviewsNum={generateRandom(1000, 2000, 8)}
         product={
-          products.filter((p: Product) => p.gtin === router.query.gtin)[0]
+          productsState.filter((p: Product) => p.gtin === router.query.gtin)[0]
         }
       />
       <ShoppingCart open={!!router.query.cart} />
