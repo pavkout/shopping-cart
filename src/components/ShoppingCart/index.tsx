@@ -3,10 +3,11 @@ import { Fragment, useContext } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 
+import ShoppingCartItem from './ShoppingCartItem';
+
 import { Product } from '../../types';
 import { ShoppingContext } from '../../state/store';
-import { removeFromCart } from '../../state/actions';
-import ItemQuantity from '../ItemQuantity';
+import { formatPrice } from '../../utils';
 
 type Props = {
   open: boolean;
@@ -15,15 +16,10 @@ type Props = {
 const ShoppingCart = ({ open }: Props) => {
   // Use router object
   const router = useRouter();
-
   // Use context
-  const { state, dispatch } = useContext(ShoppingContext);
+  const { state } = useContext(ShoppingContext);
 
   const { cart, totalPrice } = state;
-
-  const handleRemoveClick = (gtin: string) => {
-    dispatch(removeFromCart(gtin));
-  };
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -86,49 +82,7 @@ const ShoppingCart = ({ open }: Props) => {
                           >
                             {cart.map((product: Product) => (
                               <li key={product.gtin} className='flex py-6'>
-                                <div className='h-24 w-24 p-4 flex-shrink-0 overflow-hidden rounded-full border border-gray-200'>
-                                  <img
-                                    src={product.imageUrl}
-                                    alt='Product Image'
-                                    className='h-full w-full object-cover object-center'
-                                  />
-                                </div>
-
-                                <div className='ml-4 flex flex-1 flex-col'>
-                                  <div>
-                                    <div className='flex justify-between text-base font-medium text-gray-900'>
-                                      <h3>{product.name}</h3>
-                                      <p className='ml-4'>
-                                        {Math.round(
-                                          product.recommendedRetailPrice *
-                                            product.quantity *
-                                            100
-                                        ) / 100}
-                                        {product.recommendedRetailPriceCurrency}
-                                      </p>
-                                    </div>
-                                    <p className='mt-1 text-sm text-gray-500'>
-                                      {product.categoryName}
-                                    </p>
-                                  </div>
-                                  <div className='flex flex-1 items-center mt-2 justify-between text-sm'>
-                                    <ItemQuantity
-                                      gtin={product.gtin}
-                                      quantity={product.quantity}
-                                    />
-                                    <div className='flex'>
-                                      <button
-                                        onClick={() =>
-                                          handleRemoveClick(product.gtin)
-                                        }
-                                        type='button'
-                                        className='font-medium text-purple-600 hover:text-purple-500'
-                                      >
-                                        Remove
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
+                                <ShoppingCartItem product={product} />
                               </li>
                             ))}
                           </ul>
@@ -139,7 +93,7 @@ const ShoppingCart = ({ open }: Props) => {
                     <div className='border-t border-gray-200 py-6 px-4 sm:px-6'>
                       <div className='flex justify-between text-base font-medium text-gray-900'>
                         <p>Subtotal</p>
-                        <p>{totalPrice}€</p>
+                        <p>{formatPrice('€', totalPrice)}</p>
                       </div>
                       <p className='mt-0.5 text-sm text-gray-500'>
                         Shipping and taxes calculated at checkout.
