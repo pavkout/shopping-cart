@@ -7,6 +7,9 @@ const Footer = () => (
         <h1 className='font-display font-medium text-2xl text-gray-900'>
           Join the Qogita Family
         </h1>
+        <p className='font-body py-4 w-72 text-gray-700'>
+          Get notified of new products, special promotions, sales, and more.
+        </p>
         <div className='flex mt-6'>
           <input
             className='h-12 p-4 rounded-l font-body bg-gray-100 border-gray-400 hover:border-gray-700 focus:border-gray-700 focus: border-2 focus:outline-none'
@@ -23,43 +26,72 @@ const Footer = () => (
         <div className='flex flex-col space-y-4'>
           <Link href='/'>
             <h1 className='font-display font-medium md:text-lg text-gray-900'>
-              Qogita
+              Our offers
             </h1>
           </Link>
           <Link href='/'>
-            <p>About Us</p>
+            <p className='font-body text-sm md:text-base text-gray-700'>
+              View catalog
+            </p>
+          </Link>
+          <Link href='/'>
+            <p className='font-body text-sm md:text-base text-gray-700'>
+              Sell First, Pay Later
+            </p>
+          </Link>
+        </div>
+
+        <div className='flex flex-col space-y-4'>
+          <Link href='/'>
+            <h1 className='font-display font-medium md:text-lg text-gray-900'>
+              Information
+            </h1>
+          </Link>
+          <Link href='/'>
+            <p>Why Qogita</p>
+          </Link>
+          <Link href='/'>
+            <p>Buyers</p>
+          </Link>
+          <Link href='/'>
+            <p>Sellers</p>
+          </Link>
+        </div>
+
+        <div className='flex flex-col space-y-4'>
+          <Link href='/'>
+            <h1 className='font-display font-medium md:text-lg text-gray-900'>
+              Support
+            </h1>
+          </Link>
+          <Link href='/'>
+            <p>Help</p>
+          </Link>
+          <Link href='/'>
+            <p>Contact</p>
+          </Link>
+          <Link href='/'>
+            <p>Developers</p>
+          </Link>
+        </div>
+
+        <div className='flex flex-col space-y-4'>
+          <Link href='/'>
+            <h1 className='font-display font-medium md:text-lg text-gray-900'>
+              Company
+            </h1>
+          </Link>
+          <Link href='/'>
+            <p>About</p>
+          </Link>
+          <Link href='/'>
+            <p>Careers</p>
           </Link>
           <Link href='/'>
             <p>FAQ</p>
           </Link>
         </div>
-        <div className='flex flex-col space-y-4'>
-          <Link href='/'>
-            <h1 className='font-display font-medium md:text-lg text-gray-900'>
-              Brands
-            </h1>
-          </Link>
-          <Link href='/'>
-            <p className='font-body text-sm md:text-base text-gray-700'>
-              Parodontax
-            </p>
-          </Link>
-          <Link href='/'>
-            <p className='font-body text-sm md:text-base text-gray-700'>
-              Instituto Espanol
-            </p>
-          </Link>
-          <Link href='/'>
-            <p className='font-body text-sm md:text-base text-gray-700'>
-              Stiga
-            </p>
-          </Link>
-          <Link href='/'>
-            <p className='font-body text-sm md:text-base text-gray-700'>
-              Carolina Herrera
-            </p>
-          </Link>
-        </div>
+
         <div className='flex flex-col space-y-4'>
           <h1 className='font-display font-medium md:text-lg text-gray-900'>
             Contact
@@ -71,7 +103,7 @@ const Footer = () => (
       </div>
     </div>
     <span className='flex items-end justify-center w-full h-20'>
-      © Copyright Qogita {new Date().getFullYear()}
+      © {new Date().getFullYear()} Qogita. All rights reserved.
     </span>
   </footer>
 );
