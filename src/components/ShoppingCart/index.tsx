@@ -4,9 +4,8 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { useToasts } from 'react-toast-notifications';
 
-import ShoppingCartItem from './ShoppingCartItem';
+import ShoppingList from './ShoppingList';
 
-import { Product } from '../../types';
 import { ShoppingContext } from '../../state/store';
 import { formatPrice } from '../../utils';
 import { resetCart } from '../../state/actions';
@@ -85,20 +84,7 @@ const ShoppingCart = ({ open }: Props) => {
                         </div>
                       </div>
 
-                      <div className='mt-8'>
-                        <div className='flow-root'>
-                          <ul
-                            role='list'
-                            className='-my-6 divide-y divide-gray-200'
-                          >
-                            {cart.map((product: Product) => (
-                              <li key={product.gtin} className='flex py-6'>
-                                <ShoppingCartItem product={product} />
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
+                      <ShoppingList />
                     </div>
 
                     <div className='border-t border-gray-200 py-6 px-4 sm:px-6'>
