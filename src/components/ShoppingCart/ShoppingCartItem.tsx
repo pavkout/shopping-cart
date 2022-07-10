@@ -28,7 +28,7 @@ const ShoppingCartItem = ({ product }: Props) => {
   // Use context
   const { dispatch } = useContext(ShoppingContext);
 
-  // Culculate the amount of money.
+  // Calculate the amount of money.
   const amount = calculateAmountWithQuantity(recommendedRetailPrice, quantity);
 
   // This function fires when user click remove button.
