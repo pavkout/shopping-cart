@@ -40,8 +40,8 @@ const HomePage = ({ products }: Props) => {
 
 export default HomePage;
 
-export async function getServerSideProps(ctx: any) {
+export async function getServerSideProps() {
   const products = await getPage(1);
-
+  console.log(products);
   return { props: { products } };
 }
