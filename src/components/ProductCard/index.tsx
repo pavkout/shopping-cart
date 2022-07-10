@@ -1,14 +1,23 @@
+import { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShoppingCartIcon } from '@heroicons/react/outline';
 
 import { Product } from '../../types';
+import { ShoppingContext } from '../../state/store';
+import { addToCart } from '../../state/actions';
 
 type Props = {
   product: Product;
 };
 
 const ProductCard = ({ product }: Props) => {
+  // Use context
+  const { dispatch } = useContext(ShoppingContext);
+
+  const handleAddClick = () => {
+    dispatch(addToCart({ ...product, quantity: 1 }));
+  };
   return (
     <div className='group relative overflow-hidden rounded-md px-4 pt-4 pb-20 shadow-lg hover:cursor-pointer'>
       <figure className='flex justify-center items-center px-10 '>
@@ -32,7 +41,10 @@ const ProductCard = ({ product }: Props) => {
           {product.recommendedRetailPriceCurrency}
         </p>
       </div>
-      <button className='absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-purple-500 pl-4 text-white shadow disabled:opacity-60 hover:opacity-80 text-2xl'>
+      <button
+        onClick={handleAddClick}
+        className='absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-purple-500 pl-4 text-white shadow disabled:opacity-60 hover:opacity-80 text-2xl'
+      >
         <ShoppingCartIcon className='h-6 w-6' aria-hidden='true' />
       </button>
     </div>
