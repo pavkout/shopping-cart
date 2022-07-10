@@ -11,6 +11,14 @@ type Props = {
   products: Product[];
 };
 
+/**
+ * Generate random numbers for raviews.
+ */
+const generateRandom = (min: number, max: number, step: number) => {
+  const randomNum = min + Math.random() * (max - min);
+  return Math.round(randomNum / step) * step;
+};
+
 const HomePage = ({ products }: Props) => {
   const router = useRouter();
 
@@ -26,6 +34,8 @@ const HomePage = ({ products }: Props) => {
       </div>
       <ProductModal
         open={!!router.query.gtin}
+        ratingStars={generateRandom(1, 5, 1)}
+        reviewsNum={generateRandom(1000, 2000, 8)}
         product={
           products.filter((p: Product) => p.gtin === router.query.gtin)[0]
         }
