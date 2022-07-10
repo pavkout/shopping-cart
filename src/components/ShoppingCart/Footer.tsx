@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
+
+import Alert from '../Alert';
 
 import { ShoppingContext } from '../../state/store';
 import { resetCart } from '../../state/actions';
@@ -9,15 +11,22 @@ import { formatPrice } from '../../utils';
 const Footer = () => {
   // Use router object
   const router = useRouter();
+
+  // Create flag for alert status.
+  const [open, setOpen] = useState(false);
+
   // Use context
   const { state, dispatch } = useContext(ShoppingContext);
+
   // Use toast system.
   const { addToast } = useToasts();
+
   // Destructure the needed state values
   const { totalPrice, totalItems } = state;
 
   const handleEraseCart = () => {
     dispatch(resetCart());
+    setOpen(false);
     addToast('The cart has successfully erased.', {
       appearance: 'success',
     });
@@ -48,7 +57,7 @@ const Footer = () => {
               <button
                 type='button'
                 className='font-medium text-gray-400 hover:text-gray-500'
-                onClick={handleEraseCart}
+                onClick={() => setOpen(true)}
               >
                 Erase Cart
               </button>{' '}
@@ -65,6 +74,13 @@ const Footer = () => {
           </button>
         </p>
       </div>
+      <Alert
+        open={open}
+        title='Erase Cart'
+        description='Are you sure you want to erase your cart? All of your data will be permanently removed. This action cannot be undone.'
+        onReject={() => setOpen(false)}
+        onConfirm={handleEraseCart}
+      />
     </div>
   );
 };
