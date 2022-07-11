@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import ProductCard from '../components/ProductCard';
@@ -8,7 +9,6 @@ import Pagination from '../components/Pagination';
 import { getPage } from './api/products';
 import { Product } from '../types';
 import { generateRandom, scrollTop } from '../utils';
-import { useState } from 'react';
 
 type Props = {
   products: Product[];
