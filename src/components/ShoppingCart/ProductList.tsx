@@ -1,14 +1,12 @@
-import { useContext } from 'react';
-
 import EmptyCart from './EmptyCart';
 import ProductCartItem from './ProductCartItem';
 
-import { ShoppingContext } from '../../state/store';
+import { useAppContext } from '../../state/store';
 import { Product } from '../../types';
 
 const ProductList = () => {
   // Use context
-  const { state } = useContext(ShoppingContext);
+  const { state } = useAppContext();
 
   if (state.cart.length === 0) {
     return <EmptyCart />;

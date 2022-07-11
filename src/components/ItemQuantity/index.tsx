@@ -1,10 +1,8 @@
-import { useContext } from 'react';
 import {
   increaseCartQuantity,
   subtractCartQuantity,
 } from '../../state/actions';
-
-import { ShoppingContext } from '../../state/store';
+import { useAppContext } from '../../state/store';
 
 type Props = {
   gtin: string;
@@ -15,7 +13,7 @@ type Props = {
 
 const ItemQuantity = ({ gtin, quantity, onIncrease, onSubtract }: Props) => {
   // Use context
-  const { dispatch } = useContext(ShoppingContext);
+  const { dispatch } = useAppContext();
 
   const handleAddQuantityToCart = () => {
     if (onIncrease) {

@@ -1,11 +1,10 @@
-import { useContext } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShoppingCartIcon } from '@heroicons/react/outline';
 import { useToasts } from 'react-toast-notifications';
 
 import { Product } from '../../types';
-import { ShoppingContext } from '../../state/store';
+import { useAppContext } from '../../state/store';
 import { addToCart } from '../../state/actions';
 import { formatPrice } from '../../utils';
 
@@ -24,7 +23,7 @@ const ProductCard = ({ product }: Props) => {
   } = product;
 
   // Use context
-  const { dispatch } = useContext(ShoppingContext);
+  const { dispatch } = useAppContext();
 
   // Use toast system.
   const { addToast } = useToasts();

@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
 
 import Alert from '../Alert';
 
-import { ShoppingContext } from '../../state/store';
+import { useAppContext } from '../../state/store';
 import { resetCart } from '../../state/actions';
 import { formatPrice } from '../../utils';
 
@@ -16,7 +16,7 @@ const Footer = () => {
   const [open, setOpen] = useState(false);
 
   // Use context
-  const { state, dispatch } = useContext(ShoppingContext);
+  const { state, dispatch } = useAppContext();
 
   // Use toast system.
   const { addToast } = useToasts();

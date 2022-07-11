@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Fragment, useContext, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
@@ -9,7 +9,7 @@ import { useToasts } from 'react-toast-notifications';
 import ItemQuantity from '../ItemQuantity';
 
 import { Product } from '../../types';
-import { ShoppingContext } from '../../state/store';
+import { useAppContext } from '../../state/store';
 import { addToCart } from '../../state/actions';
 import { formatPrice } from '../../utils';
 
@@ -38,7 +38,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
   const [quantity, setQuantity] = useState(product?.quantity || 1);
 
   // Use context
-  const { dispatch } = useContext(ShoppingContext);
+  const { dispatch } = useAppContext();
 
   // Don't display nothing if the open is false or there isn't any product.
   if (!open || !product) return null;

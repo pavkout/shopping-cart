@@ -2,6 +2,7 @@ import React, {
   createContext,
   ReactElement,
   ReactNode,
+  useContext,
   useReducer,
 } from 'react';
 import Reducer from './reducer';
@@ -22,3 +23,7 @@ export function Store({ children }: { children: ReactNode }): ReactElement {
 }
 
 export const ShoppingContext = createContext({} as ContextType);
+
+export function useAppContext() {
+  return useContext(ShoppingContext);
+}

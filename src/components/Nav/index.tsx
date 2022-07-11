@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import { useContext } from 'react';
 
-import { ShoppingContext } from '../../state/store';
+import { useAppContext } from '../../state/store';
 
 const Nav = () => {
   // Use context
-  const { state } = useContext(ShoppingContext);
+  const { state } = useAppContext();
 
   const { totalItems } = state;
 

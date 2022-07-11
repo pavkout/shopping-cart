@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
 
 import ItemQuantity from '../ItemQuantity';
 import Alert from '../Alert';
 
 import { Product } from '../../types';
-import { ShoppingContext } from '../../state/store';
+import { useAppContext } from '../../state/store';
 import { removeFromCart } from '../../state/actions';
 import { calculateAmountWithQuantity, formatPrice } from '../../utils';
 
@@ -29,7 +29,7 @@ const ProductCartItem = ({ product }: Props) => {
   // Use toast system.
   const { addToast } = useToasts();
   // Use context
-  const { dispatch } = useContext(ShoppingContext);
+  const { dispatch } = useAppContext();
 
   // Create flag for alert status.
   const [open, setOpen] = useState(false);
