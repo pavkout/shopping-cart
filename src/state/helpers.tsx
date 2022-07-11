@@ -71,10 +71,13 @@ export const subtractQuantity = (
   num1: number = 0,
   num2: number = 1
 ): number => {
-  // Check first of all if the subtract value is negative then return zero.
-  if (num1 - num2 < 0) return 0;
+  // Make the subtract.
+  const result = num1 - num2;
 
-  return num1 - num2;
+  // Check first of all if the subtract value is negative then return zero.
+  if (result < 0) return 0;
+
+  return result;
 };
 
 /**
