@@ -10,7 +10,8 @@
     "prestart": "npm run build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -25,18 +26,22 @@
   "dependencies": {
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^1.0.6",
-    "next": "^11.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "next": "^12.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-toast-notifications": "^2.5.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
     "@types/react": "^17.0.15",
     "autoprefixer": "^10.4.7",
     "eslint": "^8.19.0",
     "eslint-config-next": "12.2.2",
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.1",
+    "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
