@@ -30,7 +30,7 @@ const ShoppingCart = ({ open }: Props) => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity' />
+          <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity dark:bg-gray-500 dark:bg-opacity-50' />
         </Transition.Child>
 
         <div className='fixed inset-0 overflow-hidden'>
@@ -46,7 +46,7 @@ const ShoppingCart = ({ open }: Props) => {
                 leaveTo='translate-x-full'
               >
                 <Dialog.Panel className='pointer-events-auto w-screen max-w-md'>
-                  <div className='flex h-full flex-col overflow-y-scroll bg-white shadow-xl'>
+                  <div className='flex h-full flex-col overflow-y-scroll bg-white shadow-xl dark:bg-gray-900'>
                     <div className='flex-1 overflow-y-auto py-6 px-4 sm:px-6'>
                       <Header />
                       <ProductList />

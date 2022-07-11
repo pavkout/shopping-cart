@@ -38,24 +38,24 @@ const ProductCard = ({ product }: Props) => {
   };
 
   return (
-    <div className='group relative overflow-hidden rounded-md px-4 pt-4 pb-20 shadow-lg hover:cursor-pointer'>
-      <figure className='flex justify-center items-center px-10 '>
+    <div className='group relative overflow-hidden rounded-md px-4 pt-4 pb-20 shadow-lg hover:cursor-pointer dark:bg-gray-800'>
+      <figure className='flex justify-center items-center px-10 dark:bg-gray-800'>
         <Image
           src={imageUrl}
           alt='Product Image'
-          className='object-contain w-full h-64'
+          className='object-contain w-full h-64 dark:bg-gray-800'
           height={300}
           width={220}
         />
       </figure>
       <div className='flex justify-between'>
         <Link href={`/?gtin=${gtin}`} as={`/product/${gtin}`}>
-          <h2 className='text-md text-gray-700 pr-4'>
+          <h2 className='text-md text-gray-700 pr-4 dark:text-gray-200'>
             <span aria-hidden='true' className='absolute inset-0' />
             {name}
           </h2>
         </Link>
-        <p className='text-md font-medium text-gray-900'>
+        <p className='text-md font-medium text-gray-900 dark:text-gray-400'>
           {formatPrice(recommendedRetailPriceCurrency, recommendedRetailPrice)}
         </p>
       </div>

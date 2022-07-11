@@ -34,7 +34,7 @@ const Footer = () => {
 
   return (
     <div className='border-t border-gray-200 py-6 px-4 sm:px-6'>
-      <div className='flex justify-between text-base font-medium text-gray-900'>
+      <div className='flex justify-between text-base font-medium text-gray-900 dark:text-gray-200'>
         <p>Subtotal</p>
         <p>{formatPrice('€', totalPrice)}</p>
       </div>

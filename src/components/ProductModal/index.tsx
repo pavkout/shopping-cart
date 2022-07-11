@@ -68,7 +68,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <div className='hidden fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity md:block' />
+          <div className='hidden fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity md:block dark:bg-gray-500 dark:bg-opacity-50' />
         </Transition.Child>
 
         <div className='fixed z-10 inset-0 overflow-y-auto'>
@@ -83,7 +83,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
               leaveTo='opacity-0 translate-y-4 md:translate-y-0 md:scale-95'
             >
               <Dialog.Panel className='flex text-base text-left transform transition w-full md:max-w-2xl md:px-4 md:my-8 lg:max-w-4xl'>
-                <div className='w-full relative flex items-center bg-white px-4 pt-14 pb-8 overflow-hidden shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8'>
+                <div className='w-full relative flex items-center bg-white px-4 pt-14 pb-8 overflow-hidden shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8 dark:bg-gray-900'>
                   <button
                     type='button'
                     className='absolute top-4 right-4 text-gray-400 hover:text-gray-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8'
@@ -98,13 +98,13 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
                       <Image
                         src={product.imageUrl}
                         alt={product.name}
-                        className='object-center object-cover'
+                        className='object-center object-cover dark:bg-gray-900'
                         height={314}
                         width={314}
                       />
                     </div>
                     <div className='flex flex-col justify-between h-full sm:col-span-8 lg:col-span-7'>
-                      <h2 className='text-2xl font-extrabold text-gray-900 sm:pr-12'>
+                      <h2 className='text-2xl font-extrabold text-gray-900 sm:pr-12 dark:text-gray-200'>
                         {product.name}
                       </h2>
 
@@ -116,7 +116,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
                           Product information
                         </h3>
 
-                        <p className='text-2xl text-gray-900'>
+                        <p className='text-2xl text-gray-900 dark:text-gray-200'>
                           {formatPrice(
                             product.recommendedRetailPriceCurrency,
                             product.recommendedRetailPrice
@@ -132,8 +132,8 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
                                   key={rating}
                                   className={`${
                                     ratingStars > rating
-                                      ? 'text-gray-900'
-                                      : 'text-gray-200'
+                                      ? 'text-gray-900 dark:text-gray-200'
+                                      : 'text-gray-200 dark:text-gray-700'
                                   } h-5 w-5 flex-shrink-0`}
                                   aria-hidden='true'
                                 />

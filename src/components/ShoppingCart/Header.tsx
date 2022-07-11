@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <div className='flex items-start justify-between'>
-      <Dialog.Title className='text-lg font-medium text-gray-900'>
+      <Dialog.Title className='text-lg font-medium text-gray-900 dark:text-gray-200'>
         {' '}
         Shopping cart{' '}
       </Dialog.Title>

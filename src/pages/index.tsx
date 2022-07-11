@@ -30,10 +30,10 @@ const HomePage = ({ products = [] }: Props) => {
 
   return (
     <ToastProvider autoDismiss={true} placement='bottom-left'>
-      <div className='font-display mt-12 mb-2 text-3xl md:text-4xl font-medium text-center text-gray-700'>
+      <div className='font-display mt-12 mb-2 text-3xl md:text-4xl font-medium text-center text-gray-700 dark:text-gray-200'>
         <h1> {"Qogita's Collection"} </h1>
       </div>
-      <div className='grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 p-6 px-20'>
+      <div className='grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 p-6 px-20 dark:bg-gray-900'>
         {productsState.map((p: Product) => (
           <ProductCard key={p.gtin} product={p} />
         ))}

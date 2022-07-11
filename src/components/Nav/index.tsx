@@ -19,7 +19,7 @@ const Nav = () => {
 
       <div className='flex justify-end items-end pr-4 md:pr-24 w-full space-x-6 md:space-x-12 font-display font-thin md:font-light'>
         <Link href='/?cart="true"' as='/cart'>
-          <li className='flex transition duration-300 transform hover:-translate-y-1 hover:font-normal'>
+          <div className='flex transition duration-300 transform hover:-translate-y-1 hover:font-normal'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-8 w-8 hover:text-purple-500'
@@ -39,7 +39,7 @@ const Nav = () => {
                 {totalItems}
               </span>
             )}
-          </li>
+          </div>
         </Link>
       </div>
     </nav>

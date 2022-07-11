@@ -47,7 +47,7 @@ const ProductCartItem = ({ product }: Props) => {
 
   return (
     <>
-      <div className='h-24 w-24 p-4 flex-shrink-0 overflow-hidden rounded-full border border-gray-200'>
+      <div className='h-24 w-24 p-4 flex-shrink-0 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700'>
         <Image
           src={imageUrl}
           alt='Product Image'
@@ -59,7 +59,7 @@ const ProductCartItem = ({ product }: Props) => {
 
       <div className='ml-4 flex flex-1 flex-col'>
         <div>
-          <div className='flex justify-between text-base font-medium text-gray-900'>
+          <div className='flex justify-between text-base font-medium text-gray-900 dark:text-gray-200'>
             <h3>{name}</h3>
             <p className='ml-4'>
               {formatPrice(recommendedRetailPriceCurrency, amount)}

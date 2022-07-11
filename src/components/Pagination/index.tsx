@@ -42,7 +42,7 @@ const Pagination = ({ numberOfPages = 5, onChange }: Props) => {
 
   return (
     <>
-      <div className='flex items-center justify-center py-10 lg:px-0 sm:px-6 px-4'>
+      <div className='flex items-center justify-center py-10 lg:px-0 sm:px-6 px-4 dark:bg-gray-900'>
         <div className='lg:w-3/5 w-full  flex items-center justify-between border-t border-gray-200'>
           <div
             role='button'

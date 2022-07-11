@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   purge: ['./src/pages/**/*.tsx', './src/components/**/*.tsx'],
-  darkMode: false,
+  darkMode: 'class',
   theme: {
     screens: {
       sm: '640px',
