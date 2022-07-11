@@ -7,10 +7,12 @@ import React, {
   useMemo,
   useReducer,
 } from 'react';
+
 import Reducer from './reducer';
 import { ContextType } from '../types';
 import { initialState } from './initialState';
 import { initCart } from './actions';
+import { usePrevious } from '../hooks/usePrevious';
 
 /**
  * React Context-based Global Store with a reducer
@@ -21,6 +23,9 @@ export function Store({ children }: { children: ReactNode }): ReactElement {
   const contextValue = useMemo(() => {
     return { state, dispatch };
   }, [state, dispatch]);
+
+  // Get the previous value (was passed into hook on last render)
+  const prevState: number = usePrevious<number>(state);
 
   useEffect(() => {
     // Get from local storage by key
@@ -33,11 +38,11 @@ export function Store({ children }: { children: ReactNode }): ReactElement {
   }, []);
 
   useEffect(() => {
-    if (state !== initialState) {
+    if (state !== prevState) {
       // Create and/or set a new localstorage variable called "state"
       localStorage.setItem('state', JSON.stringify(state));
     }
-  }, [state]);
+  }, [state, prevState]);
 
   return (
     <ShoppingContext.Provider value={contextValue}>
