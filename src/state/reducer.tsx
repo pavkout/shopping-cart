@@ -36,7 +36,9 @@ const Reducer = (state: IState, action: ActionType): any => {
       };
     case REMOVE_FROM_CART: {
       // Find the product in order to get the quantity.
-      let product = state.cart.find((p) => p.gtin === action.payload);
+      let product: Product | undefined = state.cart.find(
+        (p) => p.gtin === action.payload
+      );
 
       return {
         ...state,
@@ -44,8 +46,8 @@ const Reducer = (state: IState, action: ActionType): any => {
         totalItems: subtractQuantity(state.totalItems, product?.quantity),
         totalPrice: subtractTotalPrice(
           state.totalPrice,
-          (action.payload as Product).recommendedRetailPrice,
-          (action.payload as Product).quantity
+          product?.recommendedRetailPrice,
+          product?.quantity
         ),
       };
     }
