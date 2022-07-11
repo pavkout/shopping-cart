@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { ToastProvider } from 'react-toast-notifications';
 
 import ProductCard from '../components/ProductCard';
 import ProductModal from '../components/ProductModal';
@@ -28,7 +29,7 @@ const HomePage = ({ products = [] }: Props) => {
   };
 
   return (
-    <>
+    <ToastProvider autoDismiss={true} placement='bottom-left'>
       <div className='font-display mt-12 mb-2 text-3xl md:text-4xl font-medium text-center text-gray-700'>
         <h1> {"Qogita's Collection"} </h1>
       </div>
@@ -49,7 +50,7 @@ const HomePage = ({ products = [] }: Props) => {
         }
       />
       <ShoppingCart open={!!router?.query?.cart} />
-    </>
+    </ToastProvider>
   );
 };
 
