@@ -22,7 +22,7 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className='flex space-x-6 md:space-x-24'>
+      <div className='grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 p-6 sm:px-20 lg:px-20 px-6'>
         <div className='flex flex-col space-y-4'>
           <Link href='/'>
             <h1 className='font-display font-medium md:text-lg text-gray-900 dark:text-gray-200'>
