@@ -8,7 +8,7 @@ import { ShoppingContext } from '../../state/store';
 
 type Props = {
   gtin: string;
-  quantity: number;
+  quantity?: number;
   onIncrease?(): void;
   onSubtract?(): void;
 };

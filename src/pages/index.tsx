@@ -11,10 +11,10 @@ import { Product } from '../types';
 import { generateRandom, scrollTop } from '../utils';
 
 type Props = {
-  products: Product[];
+  products?: Product[];
 };
 
-const HomePage = ({ products }: Props) => {
+const HomePage = ({ products = [] }: Props) => {
   const router = useRouter();
 
   // Create flag to store the current products per page.
@@ -39,14 +39,16 @@ const HomePage = ({ products }: Props) => {
       </div>
       <Pagination numberOfPages={100 / 20} onChange={handleFetchPage} />
       <ProductModal
-        open={!!router.query.gtin}
+        open={!!router?.query?.gtin}
         ratingStars={generateRandom(1, 5, 1)}
         reviewsNum={generateRandom(1000, 2000, 8)}
         product={
-          productsState.filter((p: Product) => p.gtin === router.query.gtin)[0]
+          productsState.filter(
+            (p: Product) => p.gtin === router?.query?.gtin
+          )[0]
         }
       />
-      <ShoppingCart open={!!router.query.cart} />
+      <ShoppingCart open={!!router?.query?.cart} />
     </>
   );
 };

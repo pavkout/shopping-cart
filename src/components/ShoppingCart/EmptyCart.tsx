@@ -1,10 +1,13 @@
+import Image from 'next/image';
+
 const EmptyCart = () => {
   return (
     <div className='flex flex-col items-center justify-center text-center pt-20'>
-      <img
+      <Image
         src='https://i.imgur.com/dCdflKN.png'
-        width='80'
-        height='80'
+        alt='Empty Cart Image'
+        width={80}
+        height={80}
         className='img-fluid'
       />
       <h3>

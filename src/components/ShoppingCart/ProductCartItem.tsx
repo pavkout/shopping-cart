@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useContext, useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
 
@@ -47,7 +48,7 @@ const ProductCartItem = ({ product }: Props) => {
   return (
     <>
       <div className='h-24 w-24 p-4 flex-shrink-0 overflow-hidden rounded-full border border-gray-200'>
-        <img
+        <Image
           src={imageUrl}
           alt='Product Image'
           className='h-full w-full object-cover object-center'

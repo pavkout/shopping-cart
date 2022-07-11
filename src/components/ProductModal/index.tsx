@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { Fragment, useContext, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
@@ -20,17 +21,20 @@ type Props = {
 };
 
 const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
-  // Don't display nothing if the open is false or there isn't any product.
-  if (!open || !product) return null;
-
   // Use toast system.
   const { addToast } = useToasts();
+
   // Use router object
   const router = useRouter();
+
   // Create flag to store the quantity of the item.
   const [quantity, setQuantity] = useState(product.quantity || 1);
+
   // Use context
   const { dispatch } = useContext(ShoppingContext);
+
+  // Don't display nothing if the open is false or there isn't any product.
+  if (!open || !product) return null;
 
   // This function fires when user click add to cart button.
   const handleAddClick = () => {
@@ -84,7 +88,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
 
                   <div className='w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8'>
                     <div className='aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5'>
-                      <img
+                      <Image
                         src={product.imageUrl}
                         alt={product.name}
                         className='object-center object-cover'
