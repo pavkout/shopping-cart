@@ -29,7 +29,7 @@ const HomePage = ({ products = [] }: Props) => {
   };
 
   return (
-    <ToastProvider autoDismiss={true} placement='bottom-left'>
+    <ToastProvider autoDismiss={true} placement='top-left'>
       <div className='font-display mt-12 mb-2 text-3xl md:text-4xl font-medium text-center text-gray-700 dark:text-gray-200'>
         <h1> {"Qogita's Collection"} </h1>
       </div>
