@@ -20,7 +20,7 @@ const handler = (
       const stringifiedGtinQuery = Array.isArray(query.gtin)
         ? query.gtin.join('')
         : query.gtin;
-      const product = getProduct(stringifiedGtinQuery);
+      const product = getProduct(stringifiedGtinQuery!);
       if (product) {
         status(200).json(product);
       } else {
