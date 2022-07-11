@@ -94,7 +94,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
                   </button>
 
                   <div className='w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8'>
-                    <div className='aspect-w-2 aspect-h-3 rounded-lg overflow-hidden sm:col-span-4 lg:col-span-5'>
+                    <div className='aspect-w-2 aspect-h-3 overflow-hidden sm:col-span-4 lg:col-span-5'>
                       <Image
                         src={product.imageUrl}
                         alt={product.name}
@@ -179,7 +179,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
                           <button
                             type='submit'
                             onClick={handleAddClick}
-                            className='w-3/4 bg-purple-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500'
+                            className='w-3/4 bg-purple-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 select-none'
                           >
                             Add to Cart
                           </button>
