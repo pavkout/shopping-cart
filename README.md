@@ -2,43 +2,32 @@
 
 You can follow the [link](https://www.pavkout.design/) to see the online demo.
 
-# Qogita's Front-End Technical Challenge.
+## Used Stack
 
-Congratulations on reaching the technical challenge stage of the interview process at Qogita.
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-We are excited to potentially have you join the Engineering team, where you will work alongside brilliant people to build a revolutionary global wholesale B2B platform.
+## Shopping Cart
 
-## Background
+- [x] Display paginated products.
+- [x] Add products to shopping cart.
+- [x] Quick add product by clicking a button.
+- [x] Display product details. (Modal).
+- [x] Shoping cart with selected products.
+- [x] Change quantity of the product from shopping cart.
+- [x] Remove products from shopping cart.
+- [x] Erase cart.
+- [x] Confirmation for deleting products.
+- [x] Dark/Light Theme.
+- [x] Still exist the cart after reload the page.
+- [x] Display toast for user actions.
 
-This challenge is built around the front-end stack we use at Qogita – [TypeScript](https://www.typescriptlang.org/), [React](https://reactjs.org/), [Next.js](https://nextjs.org/), and [Tailwind CSS](https://tailwindcss.com/).
+## Features
 
-You are expected to use the tools and techniques you are most comfortable with to produce good quality code that can be understood by engineers of varying experience.
-
-**Please address the functional requirements listed in the task below, and any non-functional requirements you see as appropriate.**
-
-## Task – Shopping Cart
-
-Your task is to expand this project to display products, and allow customers to add them to a shopping cart. You may use third party libraries to assist you. We expect you to prioritise the usability of your user-interface over how pretty it looks.
-
-This task should take 3-4 hours to complete, and you will be given a week to do this. You should commit your code to a repository of your choice, and then share this with us. Please also document any assumptions you make.
-
-### Requirements
-
-#### Home page
-
-- Display products retrieved from the `/products` endpoint. See [API](#api).
-- Customers should be able to browse all available products (there are 100 in total).
-- Customers should be able to add products to a shopping cart.
-
-#### Cart page
-
-- Display the products the customer has added to their shopping cart.
-- Customers should be able to remove products from their shopping cart.
-- The shopping cart's value should be prominently displayed.
-
-##### Bonus requirements
-
-- Customers should be able to change the quantity of a particular product in their shopping cart.
+- [x] Mobile Friendly.
+- [x] Full Accessibility.
 
 ## Getting started
 
@@ -47,7 +36,6 @@ The existing code includes a development environment, and an [API](#api) with pr
 ### Setup
 
 ```sh
-cd frontend-challenge
 npm install
 ```
 
