@@ -43,8 +43,12 @@ const Footer = () => {
       </p>
       <div className='mt-6'>
         <button
+          disabled={totalItems === 0}
+          aria-label='Checkout'
           onClick={() => router.push('/')}
-          className='flex items-center justify-center w-full rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700'
+          className={`${
+            totalItems === 0 ? 'bg-gray-400 cursor-not-allowed' : ''
+          } flex items-center justify-center w-full rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700'`}
         >
           Checkout
         </button>
