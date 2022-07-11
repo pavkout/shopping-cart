@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import { Fragment, useContext, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { StarIcon } from '@heroicons/react/solid';
@@ -21,6 +21,13 @@ type Props = {
 };
 
 const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
+  useEffect(() => {
+    // Reset the quantity if user close the modal
+    if (!open) {
+      setQuantity(1);
+    }
+  }, [open]);
+
   // Use toast system.
   const { addToast } = useToasts();
 
@@ -28,7 +35,7 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
   const router = useRouter();
 
   // Create flag to store the quantity of the item.
-  const [quantity, setQuantity] = useState(product.quantity || 1);
+  const [quantity, setQuantity] = useState(product?.quantity || 1);
 
   // Use context
   const { dispatch } = useContext(ShoppingContext);
@@ -87,11 +94,13 @@ const ProductModal = ({ open, product, ratingStars, reviewsNum }: Props) => {
                   </button>
 
                   <div className='w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8'>
-                    <div className='aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5'>
+                    <div className='aspect-w-2 aspect-h-3 rounded-lg overflow-hidden sm:col-span-4 lg:col-span-5'>
                       <Image
                         src={product.imageUrl}
                         alt={product.name}
                         className='object-center object-cover'
+                        height={314}
+                        width={314}
                       />
                     </div>
                     <div className='flex flex-col justify-between h-full sm:col-span-8 lg:col-span-7'>
