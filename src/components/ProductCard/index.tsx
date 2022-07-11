@@ -60,6 +60,7 @@ const ProductCard = ({ product }: Props) => {
         </p>
       </div>
       <button
+        data-testid='add-button'
         onClick={handleAddClick}
         className='absolute -bottom-4 -right-4 w-16 h-16 rounded-full bg-purple-500 pl-4 text-white shadow disabled:opacity-60 hover:opacity-80 text-2xl'
       >
