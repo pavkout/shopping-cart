@@ -16,6 +16,7 @@ import {
   RESET_CART,
   SUBTRACT_CART_QUANTITY,
   REMOVE_FROM_CART,
+  INIT_CART,
 } from './types';
 
 const Reducer = (state: IState, action: ActionType): any => {
@@ -81,6 +82,8 @@ const Reducer = (state: IState, action: ActionType): any => {
     }
     case RESET_CART:
       return initialState;
+    case INIT_CART:
+      return action.payload;
     default:
       return state;
   }
