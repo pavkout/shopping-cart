@@ -52,6 +52,8 @@ const ProductCartItem = ({ product }: Props) => {
           src={imageUrl}
           alt='Product Image'
           className='h-full w-full object-cover object-center'
+          height={100}
+          width={100}
         />
       </div>
 
