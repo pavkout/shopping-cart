@@ -29,6 +29,12 @@ You can follow the [link](https://www.pavkout.design/) to see the online demo.
 - [x] Mobile Friendly.
 - [x] Full Accessibility.
 
+## Tests (Jest)
+
+- [x] Test Suites: 6 passed
+- [x] Tests: 43 passed
+- [x] Snapshots: 1 passed
+
 ## Getting started
 
 The existing code includes a development environment, and an [API](#api) with product data for you to interact with. The relevant API response types can be found in [src/types.ts](src/types.ts). Please do not use `data/products.json` directly.
@@ -47,6 +53,12 @@ Start the project in development mode.
 
 ```sh
 npm run dev
+```
+
+Run all the tests.
+
+```sh
+npm run test
 ```
 
 #### Production
