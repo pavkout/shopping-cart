@@ -1,20 +1,16 @@
 import Image from 'next/image';
-import { useState } from 'react';
-import { useToasts } from 'react-toast-notifications';
 
 import ItemQuantity from '../ItemQuantity';
-import Alert from '../Alert';
 
 import { Product } from '../../types';
-import { useAppContext } from '../../state/store';
-import { removeFromCart } from '../../state/actions';
 import { calculateAmountWithQuantity, formatPrice } from '../../utils';
 
 type Props = {
   product: Product;
+  onDelete: () => void;
 };
 
-const ProductCartItem = ({ product }: Props) => {
+const ProductCartItem = ({ product, onDelete }: Props) => {
   // Destructure the needed product values.
   const {
     gtin,
@@ -26,24 +22,8 @@ const ProductCartItem = ({ product }: Props) => {
     categoryName,
   } = product;
 
-  // Use toast system.
-  const { addToast } = useToasts();
-  // Use context
-  const { dispatch } = useAppContext();
-
-  // Create flag for alert status.
-  const [open, setOpen] = useState(false);
-
   // Calculate the amount of money.
   const amount = calculateAmountWithQuantity(recommendedRetailPrice, quantity);
-
-  // This function fires when user click remove button.
-  const handleRemoveClick = () => {
-    dispatch(removeFromCart(gtin));
-    addToast(`${name} has successfully removed from the cart.`, {
-      appearance: 'success',
-    });
-  };
 
   return (
     <>
@@ -73,20 +53,13 @@ const ProductCartItem = ({ product }: Props) => {
             <button
               type='button'
               className='font-medium text-purple-600 hover:text-purple-500'
-              onClick={() => setOpen(true)}
+              onClick={onDelete}
             >
               Remove
             </button>
           </div>
         </div>
       </div>
-      <Alert
-        open={open}
-        title='Delete Product'
-        description='Are you sure you want to delete the product? This action cannot be undone.'
-        onReject={() => setOpen(false)}
-        onConfirm={handleRemoveClick}
-      />
     </>
   );
 };
