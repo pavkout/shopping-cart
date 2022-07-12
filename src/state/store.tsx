@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 
 import Reducer from './reducer';
-import { ContextType } from '../types';
+import { ContextType, IState } from '../types';
 import { initialState } from './initialState';
 import { initCart } from './actions';
 import { usePrevious } from '../hooks/usePrevious';
@@ -25,7 +25,7 @@ export function Store({ children }: { children: ReactNode }): ReactElement {
   }, [state, dispatch]);
 
   // Get the previous value (was passed into hook on last render)
-  const prevState: number = usePrevious<number>(state);
+  const prevState: IState = usePrevious<IState>(state);
 
   useEffect(() => {
     // Get from local storage by key
