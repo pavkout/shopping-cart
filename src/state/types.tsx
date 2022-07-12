@@ -5,3 +5,5 @@ export const INCREASE_CART_QUANTITY = 'INCREASE_CART_QUANTITY';
 export const SUBTRACT_CART_QUANTITY = 'SUBTRACT_CART_QUANTITY';
 export const RESET_CART = 'RESET_CART';
 export const INIT_CART = 'INIT_CART';
+export const OPEN_CART = 'OPEN_CART';
+export const CLOSE_CART = 'CLOSE_CART';
