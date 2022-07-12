@@ -33,6 +33,7 @@ export interface IState {
   cart: Product[];
   totalItems: number;
   totalPrice: number;
+  isCartOpen: boolean;
 }
 
 export type ActionType = {
