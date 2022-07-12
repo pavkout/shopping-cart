@@ -25,6 +25,8 @@ import {
   resetCart,
   subtractCartQuantity,
   initCart,
+  closeCart,
+  openCart,
 } from '../state/actions';
 
 describe('Cart Reducer', () => {
@@ -98,6 +100,26 @@ describe('Cart Reducer', () => {
     .withCurrentState(initialState)
     .withDesiredState({
       ...testState,
+    })
+    .run();
+
+  // Test the OPEN_CART Action
+  test(reducer)
+    .onAction(openCart())
+    .withCurrentState(testState)
+    .withDesiredState({
+      ...testState,
+      isCartOpen: true,
+    })
+    .run();
+
+  // Test the CLOSE_CART Action
+  test(reducer)
+    .onAction(closeCart())
+    .withCurrentState(testState)
+    .withDesiredState({
+      ...testState,
+      isCartOpen: false,
     })
     .run();
 

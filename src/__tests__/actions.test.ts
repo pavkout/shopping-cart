@@ -1,15 +1,19 @@
 import {
   addToCart,
+  closeCart,
   increaseCartQuantity,
   initCart,
+  openCart,
   removeFromCart,
   resetCart,
   subtractCartQuantity,
 } from '../state/actions';
 import {
   ADD_TO_CART,
+  CLOSE_CART,
   INCREASE_CART_QUANTITY,
   INIT_CART,
+  OPEN_CART,
   REMOVE_FROM_CART,
   RESET_CART,
   SUBTRACT_CART_QUANTITY,
@@ -73,5 +77,15 @@ describe('Cart Reducer', () => {
   it('resetCart has the correct type', () => {
     action = resetCart();
     expect(action.type).toEqual(RESET_CART);
+  });
+
+  it('openCart has the correct type', () => {
+    action = openCart();
+    expect(action.type).toEqual(OPEN_CART);
+  });
+
+  it('closeCart has the correct type', () => {
+    action = closeCart();
+    expect(action.type).toEqual(CLOSE_CART);
   });
 });
