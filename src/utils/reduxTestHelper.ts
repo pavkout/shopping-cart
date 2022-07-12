@@ -155,6 +155,7 @@ const testState: IState = Object.freeze({
     (a: any, b: Product) => a + b.recommendedRetailPrice,
     0
   ),
+  isCartOpen: false,
 });
 
 // Create a test product for test.
