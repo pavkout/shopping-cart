@@ -17,6 +17,7 @@ type Props = {
 };
 
 const HomePage = ({ products = [] }: Props) => {
+  // Use the router object
   const router = useRouter();
 
   // Create flag to store the current products per page.
@@ -50,7 +51,7 @@ const HomePage = ({ products = [] }: Props) => {
           )[0]
         }
       />
-      <ShoppingCart open={!!router?.query?.cart} />
+      <ShoppingCart />
     </ToastProvider>
   );
 };

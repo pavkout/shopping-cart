@@ -17,6 +17,8 @@ import {
   SUBTRACT_CART_QUANTITY,
   REMOVE_FROM_CART,
   INIT_CART,
+  CLOSE_CART,
+  OPEN_CART,
 } from './types';
 
 const Reducer = (state: IState, action: ActionType): any => {
@@ -84,6 +86,16 @@ const Reducer = (state: IState, action: ActionType): any => {
       return initialState;
     case INIT_CART:
       return action.payload;
+    case OPEN_CART:
+      return {
+        ...state,
+        isCartOpen: true,
+      };
+    case CLOSE_CART:
+      return {
+        ...state,
+        isCartOpen: false,
+      };
     default:
       return state;
   }
