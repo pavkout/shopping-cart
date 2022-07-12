@@ -1,7 +1,6 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { ExclamationIcon } from '@heroicons/react/outline';
 
 type Props = {
   open: boolean;
@@ -45,46 +44,37 @@ const Alert = ({ open, title, description, onConfirm, onReject }: Props) => {
               leaveFrom='opacity-100 translate-y-0 sm:scale-100'
               leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
             >
-              <Dialog.Panel className='relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full dark:bg-gray-900'>
-                <div className='bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 dark:bg-gray-900'>
-                  <div className='sm:flex sm:items-start'>
-                    <div className='mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10'>
-                      <ExclamationIcon
-                        className='h-6 w-6 text-red-600'
-                        aria-hidden='true'
-                      />
-                    </div>
-                    <div className='mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left'>
-                      <Dialog.Title
-                        as='h3'
-                        className='text-lg leading-6 font-medium text-gray-900 dark:text-gray-200'
-                      >
-                        {title}
-                      </Dialog.Title>
-                      <div className='mt-2'>
-                        <p className='text-sm text-gray-500'>{description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className='bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse dark:bg-gray-900'>
-                  <button
-                    type='button'
-                    className='w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm'
-                    onClick={onConfirm}
+              <div className='flex flex-col max-w-md gap-2 p-6 rounded-md shadow-md bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100'>
+                <h2 className='flex items-center gap-2 text-xl font-semibold leading-tight tracking-wide'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    viewBox='0 0 512 512'
+                    className='w-6 h-6 fill-current shrink-0 text-purple-400'
                   >
-                    OK
-                  </button>
+                    <path d='M451.671,348.569,408,267.945V184c0-83.813-68.187-152-152-152S104,100.187,104,184v83.945L60.329,348.568A24,24,0,0,0,81.432,384h86.944c-.241,2.636-.376,5.3-.376,8a88,88,0,0,0,176,0c0-2.7-.135-5.364-.376-8h86.944a24,24,0,0,0,21.1-35.431ZM312,392a56,56,0,1,1-111.418-8H311.418A55.85,55.85,0,0,1,312,392ZM94.863,352,136,276.055V184a120,120,0,0,1,240,0v92.055L417.137,352Z'></path>
+                    <rect width='32' height='136' x='240' y='112'></rect>
+                    <rect width='32' height='32' x='240' y='280'></rect>
+                  </svg>
+                  {title}
+                </h2>
+                <p className='flex-1 dark:text-gray-400'>{description}</p>
+
+                <div className='flex flex-col justify-end gap-3 mt-6 sm:flex-row'>
                   <button
-                    type='button'
-                    className='mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm'
                     onClick={onReject}
                     ref={cancelButtonRef}
+                    className='px-6 py-2 rounded-sm'
                   >
-                    Cancel
+                    No
+                  </button>
+                  <button
+                    onClick={onConfirm}
+                    className='px-6 py-2 rounded-sm shadow-sm text-white bg-purple-400 dark:text-gray-900'
+                  >
+                    Yes
                   </button>
                 </div>
-              </Dialog.Panel>
+              </div>
             </Transition.Child>
           </div>
         </div>
