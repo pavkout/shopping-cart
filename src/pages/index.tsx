@@ -1,7 +1,7 @@
+import { GetServerSideProps } from 'next/types';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { ToastProvider } from 'react-toast-notifications';
-import Head from 'next/head';
 
 import ProductCard from '../components/ProductCard';
 import ProductModal from '../components/ProductModal';
@@ -31,9 +31,6 @@ const HomePage = ({ products = [] }: Props) => {
 
   return (
     <ToastProvider autoDismiss={true} placement='top-left'>
-      <Head>
-        <title>Pavlos Koutoglou</title>
-      </Head>
       <div className='font-display mt-12 mb-2 text-3xl md:text-4xl font-medium text-center text-gray-700 dark:text-gray-200'>
         <h1> {"Qogita's Collection"} </h1>
       </div>
@@ -60,8 +57,8 @@ const HomePage = ({ products = [] }: Props) => {
 
 export default HomePage;
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const products = await getPage(1);
 
   return { props: { products } };
-}
+};
