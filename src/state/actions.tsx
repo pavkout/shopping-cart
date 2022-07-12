@@ -1,8 +1,10 @@
 import { IState, Product } from '../types';
 import {
   ADD_TO_CART,
+  CLOSE_CART,
   INCREASE_CART_QUANTITY,
   INIT_CART,
+  OPEN_CART,
   REMOVE_FROM_CART,
   RESET_CART,
   SUBTRACT_CART_QUANTITY,
@@ -30,6 +32,14 @@ export const subtractCartQuantity = (gtin: string) => ({
 
 export const resetCart = () => ({
   type: RESET_CART,
+});
+
+export const openCart = () => ({
+  type: OPEN_CART,
+});
+
+export const closeCart = () => ({
+  type: CLOSE_CART,
 });
 
 export const initCart = (cart: IState) => ({
