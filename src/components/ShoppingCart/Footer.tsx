@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
 
@@ -8,10 +7,11 @@ import { useAppContext } from '../../state/store';
 import { resetCart } from '../../state/actions';
 import { formatPrice } from '../../utils';
 
-const Footer = () => {
-  // Use router object
-  const router = useRouter();
+type Props = {
+  onClose: () => void;
+};
 
+const Footer = ({ onClose }: Props) => {
   // Create flag for alert status.
   const [open, setOpen] = useState(false);
 
@@ -45,7 +45,7 @@ const Footer = () => {
         <button
           disabled={totalItems === 0}
           aria-label='Checkout'
-          onClick={() => router.push('/')}
+          onClick={onClose}
           className={`${
             totalItems === 0 ? 'bg-gray-400 cursor-not-allowed' : ''
           } flex items-center justify-center w-full rounded-md border border-transparent bg-purple-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-700'`}
@@ -71,7 +71,7 @@ const Footer = () => {
           <button
             type='button'
             className='font-medium text-purple-600 hover:text-purple-500'
-            onClick={() => router.push('/')}
+            onClick={onClose}
           >
             Continue Shopping
             <span aria-hidden='true'> &rarr;</span>
