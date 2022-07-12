@@ -32,7 +32,7 @@ You can follow the [link](https://www.pavkout.design/) to see the online demo.
 ## Tests (Jest)
 
 - [x] Test Suites: 6 passed
-- [x] Tests: 46 passed
+- [x] Tests: 50 passed
 - [x] Snapshots: 1 passed
 
 ## Getting started
